@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Simpedarku</string>
+    <string name="title_activity_login">SimpedarKU</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_login">MASUK</string>
+    <string name="action_register">Daftar</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="about_app">Dengan semakin banyaknya kasus yang bersifat darurat, baik itu kejahatan, kecelakaan/isu kesehatan, ataupun kebakaran. Munculah ide untuk membangun sebuah sistem dimana masyarakat bisa melaporkan keadaan darurat mereka langsung ke pihak berwajib. Dengan adanya sistem ini diharapkan bisa membantu mempercepat penanganan keadaan darurat.</string>
+    <string name="report">Lapor ke : </string>
+    <string name="police">Polisi</string>
+    <string name="hospital">Rumah Sakit</string>
+    <string name="fire_station">Pemadam Kebakaran</string>
+
+    <!--- My Report Table-->
+    <string name="my_report_header_time">Waktu Laporan</string>
+    <string name="my_report_header_type">Jenis Laporan</string>
+    <string name="my_report_header_title">Nama Laporan</string>
+    <string name="my_report_header_status">Status</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Selanjutnya</string>
+    <string name="previous">Kembali</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- String used for registration form -->
+    <string name="registration_step_1">DAFTAR 1/4</string>
+    <string name="prompt_name">Nama</string>
+    <string-array name="select_gender">
+        <item>-- Jenis Kelamin --</item>
+        <item>LAKI-LAKI</item>
+        <item>PEREMPUAN</item>
+    </string-array>
+    <string name="prompt_nik">NIK</string>
+
+    <string name="registration_step_2">DAFTAR 2/4</string>
+    <string name="prompt_address">Alamat ( Cukup Sampai Kecamatan )</string>
+    <string-array name="select_blood_type">
+        <item>-- Golongan Darah --</item>
+        <item>A</item>
+        <item>B</item>
+        <item>AB</item>
+        <item>O</item>
+    </string-array>
+    <string name="prompt_emergency_contact">Nomor Kontak Darurat</string>
+
+    <string name="registration_step_3">DAFTAR 3/4</string>
+    <string name="prompt_phone">Nomor HP</string>
+
+    <string name="registration_step_4">DAFTAR 4/4</string>
+    <string name="prompt_confirm_password">Ketikan Ulang Password</string>
+</resources>

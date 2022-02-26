@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:title="Pemberitahuan"
+            app:showAsAction="always"
+            android:icon="@drawable/ic_notification_foreground"
+            android:id="@+id/notification_menu"/>
+    <item android:title="Profile" android:id="@+id/profile_menu" android:icon="@drawable/ic_person_foreground"
+          android:visible="true" app:showAsAction="ifRoom"/>
+    <item android:title="Logout" android:id="@+id/logout_menu"/>
+</menu>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".fragment.register_2">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/red_500"
+            android:padding="20dp">
+
+        <TextView
+                android:text="@string/registration_step_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/registration_step_2"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="24sp"/>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textLongMessage"
+                    android:ems="10"
+                    android:id="@+id/address_field"
+                    android:hint="@string/prompt_address"
+                    android:minHeight="48dp"
+                    android:padding="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_text_edit"
+                    android:backgroundTint="@color/white"/>
+
+            <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bloodtype_field"
+                    android:entries="@array/select_blood_type"
+                    android:background="@drawable/rounded_text_edit"
+                    android:backgroundTint="@color/white"
+                    android:minHeight="48dp"
+                    android:layout_marginBottom="10dp"/>
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName|phone"
+                    android:ems="10"
+                    android:id="@+id/emergency_contact_field"
+                    android:padding="10dp"
+                    android:minHeight="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_text_edit"
+                    android:backgroundTint="@color/white"
+                    android:hint="@string/prompt_emergency_contact"/>
+
+            <Button
+                    android:text="@string/next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/next_step_2"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:backgroundTint="@color/blue_600"
+                    android:layout_marginBottom="10dp"/>
+
+            <Button
+                    android:text="@string/previous"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/back_to_step_1"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:backgroundTint="@color/blue_600"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

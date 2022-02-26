@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".fragment.register_1">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/red_500"
+            android:padding="20dp">
+
+        <TextView
+                android:text="@string/registration_step_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/registration_step_1"
+                android:textSize="24sp"
+                android:textAlignment="center"
+                android:textColor="@color/white"/>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/name_field"
+                    android:background="@drawable/rounded_text_edit"
+                    android:backgroundTint="@color/white"
+                    android:minHeight="48dp"
+                    android:hint="@string/prompt_name"
+                    android:padding="10dp"
+                    android:layout_marginBottom="10dp"/>
+
+            <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/gender_field"
+                    android:entries="@array/select_gender"
+                    android:background="@drawable/rounded_text_edit"
+                    android:backgroundTint="@color/white"
+                    android:minHeight="48dp"
+                    android:layout_marginBottom="10dp">
+            </Spinner>
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/nik_field"
+                    android:background="@drawable/rounded_text_edit"
+                    android:backgroundTint="@color/white"
+                    android:minHeight="48dp"
+                    android:padding="10dp"
+                    android:hint="@string/prompt_nik"
+                    android:layout_marginBottom="10dp"
+                    android:digits="16"/>
+
+            <Button
+                    android:text="@string/next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/next_step_1"
+                    android:backgroundTint="@color/blue_600"
+                    android:insetBottom="0dp"
+                    android:insetTop="0dp"
+                    android:layout_marginBottom="10dp"/>
+
+            <Button
+                    android:text="@string/previous"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/back_to_login"
+                    android:insetBottom="0dp"
+                    android:insetTop="0dp"
+                    android:backgroundTint="@color/blue_600"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
