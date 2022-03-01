@@ -1,6 +1,9 @@
 package com.exzork.simpedarku.rest;
 
 import com.exzork.simpedarku.model.ApiResponse;
+import com.exzork.simpedarku.model.User;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -8,9 +11,8 @@ public interface ApiInterface {
     @GET("/sanctum/csrf-cookie")
     Call<ApiResponse> getCsrfToken();
 
-    @FormUrlEncoded()
     @POST("/register")
-    Call<ApiResponse> register(@Field("name") String name, @Field("gender") String gender, @Field("nik") String nik, @Field("address") String address, @Field("blood_type") String blood_type, @Field("emergency_contact") String emergency_contact, @Field("email") String email, @Field("phone") String phone, @Field("password") String password, @Field("password_confirmation") String password_confirmation);
+    Call<ApiResponse> register(@Body User user);
 
     @FormUrlEncoded
     @POST("/login")
@@ -22,6 +24,17 @@ public interface ApiInterface {
     @GET("user/profile")
     Call<ApiResponse> getUserProfile();
 
+    @PUT("user/profile")
+    Call<ApiResponse> updateUserProfile(@Body User user);
+
     @GET("reports")
     Call<ApiResponse> getReports();
+
+    @Multipart
+    @POST("reports")
+    Call<ApiResponse> sendReport(@Part("type") RequestBody type, @Part("location") RequestBody location, @Part("title") RequestBody title, @Part("description") RequestBody description, @Part MultipartBody.Part image);
+
+    @Multipart
+    @POST("reports")
+    Call<ApiResponse> sendReport(@Part("type") RequestBody type, @Part("location") RequestBody location, @Part("title") RequestBody title, @Part("description") RequestBody description);
 }

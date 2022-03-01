@@ -2,11 +2,13 @@ package com.exzork.simpedarku.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.exzork.simpedarku.model.ApiResponse;
 import com.exzork.simpedarku.rest.ApiClient;
 import com.exzork.simpedarku.rest.ApiInterface;
+import com.exzork.simpedarku.rest.CallbackWithRetry;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,7 +33,7 @@ public class LauncherActivity extends AppCompatActivity {
         if (sharedPreferences.getString("apiToken", null) != null) {
             ApiClient.bearerToken = sharedPreferences.getString("apiToken", null);
             Call<ApiResponse> checkToken = apiService.getUserProfile();
-            checkToken.enqueue(new Callback<ApiResponse>() {
+            checkToken.enqueue(new CallbackWithRetry<ApiResponse>() {
                 @Override
                 public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                     if (response.code() == 200) {
@@ -45,7 +47,12 @@ public class LauncherActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<ApiResponse> call, Throwable t) {
-
+                    if (this.getRetryCount() == this.getTotalRetries()) {
+                        Toast.makeText(LauncherActivity.this, "Error : Retry limit reached", Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(LauncherActivity.this, "Error : Retrying... (" + (this.getRetryCount()+1) + " out of " + this.getTotalRetries() + ")", Toast.LENGTH_SHORT).show();
+                    }
+                    super.onFailure(call, t);
                 }
             });
         }else{

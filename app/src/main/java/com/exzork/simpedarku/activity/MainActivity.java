@@ -1,5 +1,6 @@
 package com.exzork.simpedarku.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,10 +8,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.*;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -21,6 +24,7 @@ import com.exzork.simpedarku.model.ErrorResponse;
 import com.exzork.simpedarku.model.Report;
 import com.exzork.simpedarku.rest.ApiClient;
 import com.exzork.simpedarku.rest.ApiInterface;
+import com.exzork.simpedarku.rest.CallbackWithRetry;
 import com.exzork.simpedarku.utils.ErrorParser;
 import com.exzork.simpedarku.utils.Utils;
 import retrofit2.Call;
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         int _10dp = Utils.getDP(10);
 
         Call<ApiResponse> getReports = apiService.getReports();
-        getReports.enqueue(new Callback<ApiResponse>() {
+        getReports.enqueue(new CallbackWithRetry<ApiResponse>() {
 
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -98,9 +102,40 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
-
+                if (this.getRetryCount() == this.getTotalRetries()) {
+                    Toast.makeText(MainActivity.this, "Error : Retry limit reached", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "Error : Retrying... (" + (this.getRetryCount()+1) + " out of " + this.getTotalRetries() + ")", Toast.LENGTH_SHORT).show();
+                }
+                super.onFailure(call, t);
             }
         });
+
+
+        Intent reportIntent = new Intent(MainActivity.this, ReportActivity.class);
+        Bundle reportBundle = new Bundle();
+
+        Button report_police_btn = findViewById(R.id.report_police_btn);
+        report_police_btn.setOnClickListener(view-> {
+            reportBundle.putString("report_type", "police");
+            reportIntent.putExtras(reportBundle);
+            startActivity(reportIntent);
+        });
+
+        Button report_fire_btn = findViewById(R.id.report_firefighter_btn);
+        report_fire_btn.setOnClickListener(view-> {
+            reportBundle.putString("report_type", "firefighter");
+            reportIntent.putExtras(reportBundle);
+            startActivity(reportIntent);
+        });
+
+        Button report_hospital_btn = findViewById(R.id.report_hospital_btn);
+        report_hospital_btn.setOnClickListener(view-> {
+            reportBundle.putString("report_type", "hospital");
+            reportIntent.putExtras(reportBundle);
+            startActivity(reportIntent);
+        });
+
     }
 
     @Override
@@ -113,29 +148,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.notification_menu:
-                return true;
-            case R.id.profile_menu:
-                return true;
-            case R.id.logout_menu:
-                Call<ApiResponse> logout = apiService.logout();
-                logout.enqueue(new Callback<ApiResponse>() {
-                    @Override
-                    public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                        if (response.isSuccessful()) {
-                            editor.remove("apiToken").apply();
-                        }
+        if (item.getItemId() == R.id.logout_menu) {
+            Call<ApiResponse> logout = apiService.logout();
+            logout.enqueue(new Callback<ApiResponse>() {
+                @Override
+                public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                    if (response.isSuccessful()) {
+                        editor.remove("apiToken").apply();
                     }
-                    @Override
-                    public void onFailure(Call<ApiResponse> call, Throwable t) {
-                    }
-                });
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+                }
+                @Override
+                public void onFailure(Call<ApiResponse> call, Throwable t) {
+                }
+            });
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+        }else if (item.getItemId() == R.id.profile_menu) {
+            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
         }
+        return super.onOptionsItemSelected(item);
     }
 }

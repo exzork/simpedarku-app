@@ -6,11 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import com.exzork.simpedarku.R;
 import com.exzork.simpedarku.fragment.register_1;
+import com.exzork.simpedarku.model.User;
 import com.exzork.simpedarku.rest.ApiClient;
 import com.exzork.simpedarku.rest.ApiInterface;
 
 public class RegisterActivity extends AppCompatActivity {
-
+    public static User user = new User();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         try {this.getSupportActionBar().hide();} //hide supportactionbar
@@ -18,9 +19,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        Fragment register_1_fragment = register_1.newInstance();
-        replaceFragment(this, R.id.register_frame, register_1_fragment);
+        replaceFragment(this, R.id.register_frame, register_1.newInstance());
     }
 
     public static void replaceFragment(FragmentActivity activity, int frameId,

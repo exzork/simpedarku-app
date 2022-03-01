@@ -59,4 +59,26 @@
 
     <string name="registration_step_4">DAFTAR 4/4</string>
     <string name="prompt_confirm_password">Ketikan Ulang Password</string>
+
+    <!-- String used for report form -->
+    <string name="prompt_location">Lokasi Dimana? </string>
+    <string name="prompt_title">Kejadian Apa? </string>
+    <string name="prompt_description">Deskripsi</string>
+    <string name="prompt_image">Ambil Foto</string>
+    <string name="action_report">LAPORKAN</string>
+    <string name="sending_report">Sedang mengirim laporan...</string>
+
+    <!-- Profile -->
+    <string name="profile_header_name">Nama</string>
+    <string name="profile_header_nik">NIK</string>
+    <string name="profile_header_gender">Jenis Kelamin</string>
+    <string name="profile_header_address">Alamat</string>
+    <string name="profile_header_blood_type">Golongan Darah</string>
+    <string name="profile_header_emergency_contact">Nomor Kontak Darurat</string>
+    <string name="profile_header_phone">Nomor HP</string>
+    <string name="profile_header_email">Email</string>
+    <string name="profile_header_password">Ubah Password</string>
+    <string name="profile_header_confirm_password">Ketik Ulang Password</string>
+    <string name="profile_header_current_password">Password</string>
+    <string name="profile_header_update">Perbarui</string>
 </resources>

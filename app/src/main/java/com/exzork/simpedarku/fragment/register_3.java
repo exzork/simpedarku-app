@@ -70,6 +70,9 @@ public class register_3 extends Fragment {
             editor.putString("phone_register", phone_field.getText().toString());
             editor.apply();
 
+            RegisterActivity.user.setEmail(email_field.getText().toString());
+            RegisterActivity.user.setPhone(phone_field.getText().toString());
+
             RegisterActivity.replaceFragment(getActivity(), R.id.register_frame, register_4.newInstance());
         });
 

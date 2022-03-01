@@ -82,6 +82,10 @@ public class register_2 extends Fragment {
             editor.putString("emergency_contact_register", emergency_contact_field.getText().toString());
             editor.apply();
 
+            RegisterActivity.user.setAddress(address_field.getText().toString());
+            RegisterActivity.user.setBloodType(bloodtype_field.getSelectedItem().toString());
+            RegisterActivity.user.setEmergencyContact(emergency_contact_field.getText().toString());
+
             RegisterActivity.replaceFragment(getActivity(),R.id.register_frame,register_3.newInstance());
         });
 

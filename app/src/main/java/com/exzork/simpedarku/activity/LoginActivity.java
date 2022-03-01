@@ -14,6 +14,7 @@ import com.exzork.simpedarku.model.ErrorResponse;
 import com.exzork.simpedarku.model.User;
 import com.exzork.simpedarku.rest.ApiClient;
 import com.exzork.simpedarku.rest.ApiInterface;
+import com.exzork.simpedarku.rest.CallbackWithRetry;
 import com.exzork.simpedarku.utils.ErrorParser;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -50,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         login_btn.setOnClickListener(view -> {
 
             Call<ApiResponse> csrf = apiService.getCsrfToken();
-            csrf.enqueue(new Callback<ApiResponse>() {
+            csrf.enqueue(new CallbackWithRetry<ApiResponse>() {
                 @Override
                 public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                     if (response.isSuccessful()) {
@@ -102,7 +103,12 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<ApiResponse> call, Throwable t) {
-                    Log.d("LoginActivity", "onFailure: " + t.getMessage());
+                    if (this.getRetryCount() == this.getTotalRetries()) {
+                        Toast.makeText(LoginActivity.this, "Error : Retry limit reached", Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(LoginActivity.this, "Error : Retrying... (" + (this.getRetryCount()+1) + " out of " + this.getTotalRetries() + ")", Toast.LENGTH_SHORT).show();
+                    }
+                    super.onFailure(call, t);
                 }
             });
 

@@ -15,8 +15,10 @@ import android.view.ViewGroup;
 import com.exzork.simpedarku.R;
 import com.exzork.simpedarku.activity.LoginActivity;
 import com.exzork.simpedarku.activity.RegisterActivity;
+import com.exzork.simpedarku.model.User;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.exzork.simpedarku.activity.RegisterActivity.user;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +26,6 @@ import static android.content.Context.MODE_PRIVATE;
  * create an instance of this fragment.
  */
 public class register_1 extends Fragment {
-
 
     public register_1() {
         // Required empty public constructor
@@ -37,15 +38,13 @@ public class register_1 extends Fragment {
      * @return A new instance of fragment register_1.
      */
     // TODO: Rename and change types and number of parameters
-    public static register_1 newInstance() {
+    public static register_1 newInstance(){
         return new register_1();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -81,6 +80,10 @@ public class register_1 extends Fragment {
             editor.putString("gender_register", gender_field.getSelectedItem().toString());
             editor.putString("nik_register",nik_field.getText().toString());
             editor.apply();
+
+            RegisterActivity.user.setName(name_field.getText().toString());
+            RegisterActivity.user.setGender(gender_field.getSelectedItem().toString());
+            RegisterActivity.user.setNik(nik_field.getText().toString());
 
             RegisterActivity.replaceFragment(getActivity(), R.id.register_frame ,register_2.newInstance());
         });

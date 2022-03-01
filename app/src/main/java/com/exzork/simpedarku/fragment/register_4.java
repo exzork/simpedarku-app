@@ -87,13 +87,17 @@ public class register_4 extends Fragment {
             String password_confirm = password_confirm_field.getText().toString();
 
             if (password_confirm.equals(password)) {
+
+                RegisterActivity.user.setPassword(password);
+                RegisterActivity.user.setPasswordConfirmation(password_confirm);
+
                 Call<ApiResponse> csrf = apiService.getCsrfToken();
                 csrf.enqueue(new Callback<ApiResponse>() {
 
                     @Override
                     public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                         if (response.isSuccessful()){
-                            Call<ApiResponse> register = apiService.register(name, gender, nik, address, blood_type, emergency_contact, email, phone, password, password_confirm);
+                            Call<ApiResponse> register = apiService.register(RegisterActivity.user);
                             register.enqueue(new Callback<ApiResponse>() {
                                 @Override
                                 public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
